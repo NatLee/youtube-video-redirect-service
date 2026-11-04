@@ -136,9 +136,9 @@ Checked on 2026-11-04 with the final version in Docker and a headless Edge brows
   loaded". Edge blocks the reply as `ERR_BLOCKED_BY_ORB`, which means YouTube answered with something
   other than video. Fetching the file is exactly the step this app was built around, so this is
   where the trick ends, and a good reason to retire.
-- **YouTube then stopped handing out links, too.** After about fifteen lookups in forty minutes from
-  the same machine, it answered "Sign in to confirm you're not a bot" instead. The page shows that
-  message (with HTTP 502) rather than falling over.
+- **YouTube also rations the links.** After about fifteen lookups in forty minutes from the same
+  machine, it answered "Sign in to confirm you're not a bot" instead, and the page showed that
+  message (with HTTP 502) rather than falling over. Half an hour later the links came back.
 - **The rest of the trick still works with other sites yt-dlp knows.** Give it a Wikimedia Commons
   file page and it finds the WebM and plays it, as in the screenshot below.
 
