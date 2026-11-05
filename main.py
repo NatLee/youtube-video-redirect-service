@@ -1,4 +1,4 @@
-"""YouTube Video Redirector: get the direct file link of a YouTube video and play it.
+"""YouTube Video Redirect Service: get the direct file link of a YouTube video and play it.
 
 Open ``/?v=<video id or YouTube link>``. yt-dlp looks up the video, the page shows
 the direct link it found and plays that link in the browser.

@@ -1,53 +1,23 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/hero-dark.png">
-    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/hero-light.png" width="960" alt="YouTube Video Redirector, exhibit 1 of 3 in the streaming-player lineage, stamped retired. You open /?v=JJo-zUi9E5U, Flask and yt-dlp find the direct file link, and the page plays it in a video tag. A timeline at the bottom runs from youtube-video-redirector (2021, you are here) to youtube-redirect-player (2023) to streaming-player (current).">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/hero-dark.png">
+    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/hero-light.png" width="960" alt="YouTube Video Redirect Service, built with Flask, yt-dlp and Video.js. You open /?v=JJo-zUi9E5U, Flask and yt-dlp find the direct file link, and the page plays it in a video tag. A strip at the bottom shows the two Docker commands that start it: docker build -t youtube-video-redirect-service . and docker run --rm -p 5000:5000 youtube-video-redirect-service.">
   </picture>
 </p>
 
 <p align="center">
-  <a href="https://github.com/NatLee/youtube-video-redirector/actions/workflows/ci.yml"><img src="https://github.com/NatLee/youtube-video-redirector/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <img src="https://img.shields.io/badge/status-retired-8a5f12" alt="Status: retired">
-  <a href="https://github.com/NatLee/streaming-player"><img src="https://img.shields.io/badge/successor-streaming--player-0f6b62" alt="Successor: streaming-player"></a>
+  <a href="https://github.com/NatLee/youtube-video-redirect-service/actions/workflows/ci.yml"><img src="https://github.com/NatLee/youtube-video-redirect-service/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/python-3.12-3776ab" alt="Python 3.12">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/NatLee/youtube-video-redirector" alt="License: MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/NatLee/youtube-video-redirect-service" alt="License: MIT"></a>
 </p>
 
-> [!IMPORTANT]
-> **This project is retired.** It is the first of three generations of the same idea, and the one
-> that lives on is **[streaming-player](https://github.com/NatLee/streaming-player)**. Use that one.
-> This repo stays as a working museum piece: the final version below runs, has tests and CI, and
-> won't get new features.
+> There's a newer project for this: [streaming-player](https://github.com/NatLee/streaming-player).
 
-YouTube Video Redirector is a tiny Flask app with one trick. Put a YouTube video ID in the address
+YouTube Video Redirect Service is a tiny Flask app with one trick. Put a YouTube video ID in the address
 bar, `/?v=JJo-zUi9E5U`, and it asks [yt-dlp](https://github.com/yt-dlp/yt-dlp) for the video's
 direct file link: the actual `googlevideo.com` address of the MP4, not the watch page. The page shows
 you that link and plays it in a plain [Video.js](https://videojs.com/) player. No watch page, no
 embed, just the file.
-
-## The family tree
-
-Three repos, one idea that kept growing. Each generation added something and let something go.
-
-```mermaid
-flowchart TB
-    G1["Gen 1 · 2021<br/><b>youtube-video-redirector</b><br/>Flask + yt-dlp"]
-    G2["Gen 2 · 2023<br/><b>youtube-redirect-player</b><br/>Flask + Socket.IO + SQLite"]
-    G3["Gen 3 · current<br/><b>streaming-player</b><br/>Django + Channels + Redis"]
-    G1 -- "+ three playlists<br/>+ every screen in sync<br/>− the ?v= page" --> G2
-    G2 -- "+ chat commands<br/>+ login, admin panel<br/>− pause all screens" --> G3
-    style G1 fill:#f2e6cb,stroke:#8a5f12,stroke-width:2px,color:#1f1c17
-```
-
-| | Gen 1 | Gen 2 | Gen 3 |
-|---|---|---|---|
-| In one line | One video per URL | One shared playlist on every open screen | A stream player your chat controls |
-| Added | `/?v=<id>` finds the direct link and plays it | Request, default and history playlists; play, pause and mute on every screen at once | Nightbot chat commands, login, admin panel, a queue with favorite and block marks, Swagger |
-| Let go | Nothing yet, it was the first | The one-video `?v=` page and the visible direct link | Pause and mute for every screen at once |
-
-You are looking at Gen 1. Gen 2 is
-[youtube-redirect-player](https://github.com/NatLee/youtube-redirect-player); Gen 3 is
-[streaming-player](https://github.com/NatLee/streaming-player).
 
 ## What it solved
 
@@ -82,21 +52,21 @@ already has video and sound in one file, because a plain `<video>` tag can't mer
 Deno is in the picture because YouTube now hands out its formats only after its player JavaScript has
 run, and yt-dlp needs a JavaScript runtime to run it.
 
-## Run the final version
+## Run it
 
 ### With Docker
 
 ```bash
-git clone https://github.com/NatLee/youtube-video-redirector.git
-cd youtube-video-redirector
-docker build -t youtube-video-redirector .
-docker run --rm -p 5000:5000 youtube-video-redirector
+git clone https://github.com/NatLee/youtube-video-redirect-service.git
+cd youtube-video-redirect-service
+docker build -t youtube-video-redirect-service .
+docker run --rm -p 5000:5000 youtube-video-redirect-service
 ```
 
 Or in one line, straight from GitHub without cloning:
 
 ```bash
-docker run --rm -p 5000:5000 $(docker build -q https://github.com/NatLee/youtube-video-redirector.git)
+docker run --rm -p 5000:5000 $(docker build -q https://github.com/NatLee/youtube-video-redirect-service.git)
 ```
 
 Then open <http://localhost:5000/>, paste a video ID or link, and press Play. The image runs gunicorn
@@ -128,14 +98,14 @@ the container and checks that it answers.
 
 ## Status in 2026: what still works
 
-Checked on 2026-11-04 with the final version in Docker and a headless Edge browser:
+Checked on 2026-11-04 with this version in Docker and a headless Edge browser:
 
 - **yt-dlp found the link.** `/?v=JJo-zUi9E5U` came back with the right title and a
   `googlevideo.com` direct link (the 360p MP4) in about four seconds.
 - **YouTube did not stream that link to the browser.** The player shows "The media could not be
   loaded". Edge blocks the reply as `ERR_BLOCKED_BY_ORB`, which means YouTube answered with something
-  other than video. Fetching the file is exactly the step this app was built around, so this is
-  where the trick ends, and a good reason to retire.
+  other than video. Fetching the file is exactly the step this app was built around, so for
+  YouTube this is where the trick stops.
 - **YouTube also rations the links.** After about fifteen lookups in forty minutes from the same
   machine, it answered "Sign in to confirm you're not a bot" instead, and the page showed that
   message (with HTTP 502) rather than falling over. Half an hour later the links came back.
@@ -150,11 +120,11 @@ rebuild.
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/screenshot-dark.png">
-    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/screenshot-light.png" width="720" alt="The final version: a form with a Wikimedia Commons link to Big Buck Bunny, the video paused on a frame of the big white rabbit, the title Big Buck Bunny 4K and the direct upload.wikimedia.org link under it.">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/screenshot-dark.png">
+    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/screenshot-light.png" width="720" alt="Today's version: a form with a Wikimedia Commons link to Big Buck Bunny, the video paused on a frame of the big white rabbit, the title Big Buck Bunny 4K and the direct upload.wikimedia.org link under it.">
   </picture>
 </p>
-<p align="center"><sub>The final version, running in Docker, playing a Wikimedia Commons link (YouTube's own links no longer play in a browser, see above).<br>Big Buck Bunny © Blender Foundation, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</sub></p>
+<p align="center"><sub>Today's version, running in Docker, playing a Wikimedia Commons link (YouTube's own links no longer play in a browser, see above).<br>Big Buck Bunny © Blender Foundation, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</sub></p>
 
 <p align="center">
   <img src="docs/example.png" width="480" alt="The 2021 version: the raw direct link printed in plain text above a Video.js player playing the example video.">

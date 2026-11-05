@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if video %}{{ video.title }} · {% endif %}YouTube Video Redirector</title>
+  <title>{% if video %}{{ video.title }} · {% endif %}YouTube Video Redirect Service</title>
   <link rel="icon" href="data:,">
   {% if video %}
   <link rel="stylesheet" href="https://vjs.zencdn.net/{{ videojs.version }}/video-js.min.css"
@@ -80,8 +80,8 @@
 <body>
 <main>
   <header>
-    <p class="eyebrow">Generation 1 of 3 · since 2021</p>
-    <h1>YouTube Video Redirector</h1>
+    <p class="eyebrow">Flask · yt-dlp · since 2021</p>
+    <h1>YouTube Video Redirect Service</h1>
     <p class="lede">Give it a video ID or link. yt-dlp finds the direct video file, and your browser plays it.</p>
   </header>
 
@@ -113,7 +113,7 @@
   {% endif %}
 
   <footer>
-    Retired. This is the first of three generations; the player that grew out of it is
+    There's a newer project for this:
     <a href="https://github.com/NatLee/streaming-player">streaming-player</a>.
   </footer>
 </main>
