@@ -1,49 +1,23 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/hero-dark.png">
-    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/hero-light.png" width="960" alt="YouTube Video Redirector, Gen 1 of the streaming-player family. You open /?v=JJo-zUi9E5U, Flask and yt-dlp find the direct file link, and the page plays it in a video tag; the start command is python main.py. A timeline at the bottom runs from youtube-video-redirector (2021, this repo) to youtube-redirect-player (2023) to streaming-player (current).">
+    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/hero-light.png" width="960" alt="YouTube Video Redirector, built with Flask, yt-dlp and Video.js. You open /?v=JJo-zUi9E5U, Flask and yt-dlp find the direct file link, and the page plays it in a video tag. A strip at the bottom shows the two Docker commands that start it: docker build -t youtube-video-redirector . and docker run --rm -p 5000:5000 youtube-video-redirector.">
   </picture>
 </p>
 
 <p align="center">
   <a href="https://github.com/NatLee/youtube-video-redirector/actions/workflows/ci.yml"><img src="https://github.com/NatLee/youtube-video-redirector/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://github.com/NatLee/streaming-player"><img src="https://img.shields.io/badge/family-streaming--player-0f6b62" alt="Family: streaming-player"></a>
   <img src="https://img.shields.io/badge/python-3.12-3776ab" alt="Python 3.12">
   <a href="LICENSE"><img src="https://img.shields.io/github/license/NatLee/youtube-video-redirector" alt="License: MIT"></a>
 </p>
+
+> There's a newer project for this: [streaming-player](https://github.com/NatLee/streaming-player).
 
 YouTube Video Redirector is a tiny Flask app with one trick. Put a YouTube video ID in the address
 bar, `/?v=JJo-zUi9E5U`, and it asks [yt-dlp](https://github.com/yt-dlp/yt-dlp) for the video's
 direct file link: the actual `googlevideo.com` address of the MP4, not the watch page. The page shows
 you that link and plays it in a plain [Video.js](https://videojs.com/) player. No watch page, no
 embed, just the file.
-
-It's the first of three generations of the same idea; the current one is
-[streaming-player](https://github.com/NatLee/streaming-player).
-
-## The family tree
-
-Three repos, one idea that kept growing. Each generation added something and let something go.
-
-```mermaid
-flowchart TB
-    G1["Gen 1 · 2021<br/><b>youtube-video-redirector</b><br/>Flask + yt-dlp"]
-    G2["Gen 2 · 2023<br/><b>youtube-redirect-player</b><br/>Flask + Socket.IO + SQLite"]
-    G3["Gen 3 · current<br/><b>streaming-player</b><br/>Django + Channels + Redis"]
-    G1 -- "+ three playlists<br/>+ every screen in sync<br/>− the ?v= page" --> G2
-    G2 -- "+ chat commands<br/>+ login, admin panel<br/>− pause all screens" --> G3
-    style G1 fill:#f2e6cb,stroke:#8a5f12,stroke-width:2px,color:#1f1c17
-```
-
-| | Gen 1 | Gen 2 | Gen 3 |
-|---|---|---|---|
-| In one line | One video per URL | One shared playlist on every open screen | A stream player your chat controls |
-| Added | `/?v=<id>` finds the direct link and plays it | Request, default and history playlists; play, pause and mute on every screen at once | Nightbot chat commands, login, admin panel, a queue with favorite and block marks, Swagger |
-| Let go | Nothing yet, it was the first | The one-video `?v=` page and the visible direct link | Pause and mute for every screen at once |
-
-You are looking at Gen 1. Gen 2 is
-[youtube-redirect-player](https://github.com/NatLee/youtube-redirect-player); Gen 3 is
-[streaming-player](https://github.com/NatLee/streaming-player).
 
 ## What it solved
 
