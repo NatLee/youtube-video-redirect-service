@@ -1,19 +1,19 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/hero-dark.png">
-    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/hero-light.png" width="960" alt="YouTube Video Redirector, built with Flask, yt-dlp and Video.js. You open /?v=JJo-zUi9E5U, Flask and yt-dlp find the direct file link, and the page plays it in a video tag. A strip at the bottom shows the two Docker commands that start it: docker build -t youtube-video-redirector . and docker run --rm -p 5000:5000 youtube-video-redirector.">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/hero-dark.png">
+    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/hero-light.png" width="960" alt="YouTube Video Redirect Service, built with Flask, yt-dlp and Video.js. You open /?v=JJo-zUi9E5U, Flask and yt-dlp find the direct file link, and the page plays it in a video tag. A strip at the bottom shows the two Docker commands that start it: docker build -t youtube-video-redirect-service . and docker run --rm -p 5000:5000 youtube-video-redirect-service.">
   </picture>
 </p>
 
 <p align="center">
-  <a href="https://github.com/NatLee/youtube-video-redirector/actions/workflows/ci.yml"><img src="https://github.com/NatLee/youtube-video-redirector/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/NatLee/youtube-video-redirect-service/actions/workflows/ci.yml"><img src="https://github.com/NatLee/youtube-video-redirect-service/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/python-3.12-3776ab" alt="Python 3.12">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/NatLee/youtube-video-redirector" alt="License: MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/NatLee/youtube-video-redirect-service" alt="License: MIT"></a>
 </p>
 
 > There's a newer project for this: [streaming-player](https://github.com/NatLee/streaming-player).
 
-YouTube Video Redirector is a tiny Flask app with one trick. Put a YouTube video ID in the address
+YouTube Video Redirect Service is a tiny Flask app with one trick. Put a YouTube video ID in the address
 bar, `/?v=JJo-zUi9E5U`, and it asks [yt-dlp](https://github.com/yt-dlp/yt-dlp) for the video's
 direct file link: the actual `googlevideo.com` address of the MP4, not the watch page. The page shows
 you that link and plays it in a plain [Video.js](https://videojs.com/) player. No watch page, no
@@ -57,16 +57,16 @@ run, and yt-dlp needs a JavaScript runtime to run it.
 ### With Docker
 
 ```bash
-git clone https://github.com/NatLee/youtube-video-redirector.git
-cd youtube-video-redirector
-docker build -t youtube-video-redirector .
-docker run --rm -p 5000:5000 youtube-video-redirector
+git clone https://github.com/NatLee/youtube-video-redirect-service.git
+cd youtube-video-redirect-service
+docker build -t youtube-video-redirect-service .
+docker run --rm -p 5000:5000 youtube-video-redirect-service
 ```
 
 Or in one line, straight from GitHub without cloning:
 
 ```bash
-docker run --rm -p 5000:5000 $(docker build -q https://github.com/NatLee/youtube-video-redirector.git)
+docker run --rm -p 5000:5000 $(docker build -q https://github.com/NatLee/youtube-video-redirect-service.git)
 ```
 
 Then open <http://localhost:5000/>, paste a video ID or link, and press Play. The image runs gunicorn
@@ -120,8 +120,8 @@ rebuild.
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/screenshot-dark.png">
-    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirector/main/docs/images/screenshot-light.png" width="720" alt="Today's version: a form with a Wikimedia Commons link to Big Buck Bunny, the video paused on a frame of the big white rabbit, the title Big Buck Bunny 4K and the direct upload.wikimedia.org link under it.">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/screenshot-dark.png">
+    <img src="https://raw.githubusercontent.com/NatLee/youtube-video-redirect-service/main/docs/images/screenshot-light.png" width="720" alt="Today's version: a form with a Wikimedia Commons link to Big Buck Bunny, the video paused on a frame of the big white rabbit, the title Big Buck Bunny 4K and the direct upload.wikimedia.org link under it.">
   </picture>
 </p>
 <p align="center"><sub>Today's version, running in Docker, playing a Wikimedia Commons link (YouTube's own links no longer play in a browser, see above).<br>Big Buck Bunny © Blender Foundation, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</sub></p>
